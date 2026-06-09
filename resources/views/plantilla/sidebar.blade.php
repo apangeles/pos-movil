@@ -6,7 +6,7 @@
         <a href="{{asset('index.html')}}" class="brand-link">
             <!--begin::Brand Image-->
             <img
-                src="{{asset('assets/img/AdminLTELogo.png')}}"
+                src="{{asset('assets/lpvm_icon.ico')}}"
                 alt="VentaMovil Logo"
                 class="brand-image opacity-75 shadow" />
             <!--end::Brand Image-->

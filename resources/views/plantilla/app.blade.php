@@ -23,7 +23,7 @@
         name="keywords"
         content="Sistema para ventas moviles." />
     <!--end::Primary Meta Tags-->
-
+    <link rel="shortcut icon" href="{{asset('assets/venta_movil.ico')}}" type="image/x-icon">
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->
     <meta name="supported-color-schemes" content="light dark" />
@@ -43,15 +43,13 @@
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/styles/overlayscrollbars.min.css"
-        crossorigin="anonymous" />
+        href="{{asset('css/overlayscrollbars.min.css')}}" />
     <!--end::Third Party Plugin(OverlayScrollbars)-->
 
     <!--begin::Third Party Plugin(Bootstrap Icons)-->
     <link
         rel="stylesheet"
-        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.13.1/font/bootstrap-icons.min.css"
-        crossorigin="anonymous" />
+        href="{{asset('bootstrap-icons-1.13.1/font/bootstrap-icons.min.css')}}" />
     <!--end::Third Party Plugin(Bootstrap Icons)-->
 
     <!--begin::Required Plugin(AdminLTE)-->
@@ -98,16 +96,13 @@
     <!--begin::Script-->
     <!--begin::Third Party Plugin(OverlayScrollbars)-->
     <script
-        src="https://cdn.jsdelivr.net/npm/overlayscrollbars@2.11.0/browser/overlayscrollbars.browser.es6.min.js"
-        crossorigin="anonymous"></script>
+        src="{{asset('js/overlayscrollbars.browser.es6.min.js')}}"></script>
     <!--end::Third Party Plugin(OverlayScrollbars)--><!--begin::Required Plugin(popperjs for Bootstrap 5)-->
     <script
-        src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"
-        crossorigin="anonymous"></script>
+        src="{{asset('js/popper.min.js')}}"></script>
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
     <script
-        src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.min.js"
-        crossorigin="anonymous"></script>
+        src="{{asset('js/bootstrap.min.js')}}"></script>
     <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
     <script src="{{asset('js/adminlte.js')}}"></script>
     @stack('scripts')
