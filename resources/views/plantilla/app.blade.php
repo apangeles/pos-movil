@@ -55,6 +55,9 @@
     <!--begin::Required Plugin(AdminLTE)-->
     <link rel="stylesheet" href="{{asset('css/adminlte.css')}}" />
     <!--end::Required Plugin(AdminLTE)-->
+    <!--begin: custome styles-->
+    <link href="{{asset('css/estilos-personalizados.css')}}?v={{ filemtime(public_path('css/estilos-personalizados.css')) }}" rel="stylesheet">
+    <!--end: custome styles-->
     @stack('styles')
 </head>
 <!--end::Head-->

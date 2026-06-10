@@ -1,0 +1,7 @@
+/* Modifica TODOS los backdrops que estén activos en el sistema */
+body.modal-open .modal-backdrop.show {
+    opacity: 0.4 !important;
+    backdrop-filter: blur(5px) !important;
+    -webkit-backdrop-filter: blur(5px) !important;
+    background-color: rgba(0, 0, 0, 0.5) !important;
+}

@@ -9,8 +9,11 @@
     <div class="row">
         <div class="col-md-12">
             <div class="card mb-4">
-                <div class="card-header">
-                    <h3 class="card-title">Listado</h3>
+                <div class="card-header d-flex align-items-center">
+                    <h3 class="card-title flex-grow-1">Listado</h3>
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalUpdate">
+                        <i class="bi bi-plus-circle"></i> Nuevo
+                    </button>
                 </div>
                 <!-- /.card-header -->
                 <div class="card-body">
@@ -91,6 +94,7 @@
     <!--end::Row-->
 </div>
 <!--end::Container-->
+@include('plantilla.action')
 @endsection
 @push('scripts')
 <script src="{{ asset('datatables/jquery-3.7.1.js') }}"></script>
