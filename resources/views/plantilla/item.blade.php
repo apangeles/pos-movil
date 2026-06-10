@@ -23,7 +23,11 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>1</td>
+                                    <td>1
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-1</td>
                                     <td>Unidades</td>
                                 </tr>
@@ -92,7 +96,28 @@
 <script src="{{ asset('datatables/jquery-3.7.1.js') }}"></script>
 <script src="{{ asset('datatables/dataTables.js') }}"></script>
 <script src="{{ asset('datatables/dataTables.bootstrap5.js') }}"></script>
+<script src="{{asset('js/sweetalert2.js')}}"></script>
 <script>
     new DataTable('#tablaListado');
+
+    function eliminar() {
+        Swal.fire({
+            title: '¿Está seguro de eliminar el registro?',
+            text: "¡No podrás revertir esto!",
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Sí, eliminarlo!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                Swal.fire({
+                    title: '¡Eliminado!',
+                    text: 'El registro ha sido eliminado.',
+                    icon: 'success',
+                });
+            }
+        });
+    }
 </script>
 @endpush
