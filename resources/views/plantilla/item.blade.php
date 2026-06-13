@@ -20,9 +20,11 @@
                     <div class="table-responsive">
                         <table id="tablaListado" class="table table-striped table-hover table-sm">
                             <thead>
-                                <th>ID</th>
-                                <th>Nombre</th>
-                                <th>Descripción</th>
+                                <tr>
+                                    <th>ID</th>
+                                    <th>Nombre</th>
+                                    <th>Descripción</th>
+                                </tr>
                             </thead>
                             <tbody>
                                 <tr>
@@ -35,47 +37,83 @@
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>2</td>
+                                    <td>2
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-2</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>3</td>
+                                    <td>3
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-3</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>4</td>
+                                    <td>4
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-4</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>5</td>
+                                    <td>5
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-5</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>6</td>
+                                    <td>6
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-6</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>7</td>
+                                    <td>7
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-7</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>8</td>
+                                    <td>8
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-8</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>9</td>
+                                    <td>9
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-9</td>
                                     <td>Unidades</td>
                                 </tr>
                                 <tr>
-                                    <td>10</td>
+                                    <td>10
+                                        <button class="btn btn-danger btn-sm" onclick="eliminar()">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </td>
                                     <td>NIU-10</td>
                                     <td>Unidades</td>
                                 </tr>
