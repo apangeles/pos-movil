@@ -12,4 +12,4 @@ Route::get('/', function () {
     return view('plantilla.item');
 });
 
-Route::resource('unidades', UnidadController::class);
+Route::resource('unidades', UnidadController::class)->exception(['create', 'edit']);
