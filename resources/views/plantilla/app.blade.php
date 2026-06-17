@@ -23,6 +23,11 @@
         name="keywords"
         content="Sistema para ventas moviles." />
     <!--end::Primary Meta Tags-->
+
+    <!--begin::Token para las llamadas en el controlador -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <!--end::Token para las llamadas en el controlador -->
+
     <link rel="shortcut icon" href="{{asset('assets/venta_movil.ico')}}" type="image/x-icon">
     <!--begin::Accessibility Features-->
     <!-- Skip links will be dynamically added by accessibility.js -->

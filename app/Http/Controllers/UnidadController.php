@@ -44,16 +44,8 @@ class UnidadController extends Controller
      */
     public function store(Request $request)
     {
-        //
-        // $request->validate([
-        //     'codigo' => 'required|string|max:3|unique:unidades,codigo',
-        //     'decripcion' => 'required|string|max:50'
-        // ]);
-        // $registro = new Unidad();
-        // $registro->codigo = $request->input('codigo');
-        // $registro->descipcion = $request->input('descripcion');
-        // $registro->save();
         $data = $this->validate($request);
+        Unidad::create($data);
 
         return response()->json([
             'status' => true,
@@ -88,17 +80,8 @@ class UnidadController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
-        // $request->validate([
-        //     'codigo' => 'required|string|max:3|unique:uniddes,codigo,' . $id . ',codigo',
-        //     'descripcion' => 'required|string|max:50',
-        // ]);
         $data = $this->validate($request, $id);
         $registro = Unidad::where('codigo', $id)->firstOrFail();
-
-        // $registro->codigo = $request->codigo;
-        // $registro->descripcion = $request->descricion;
-        // $registro->save();
         $registro->update($data);
 
         return response()->json([
@@ -139,7 +122,7 @@ class UnidadController extends Controller
                 'max:3',
                 Rule::unique('unidades', 'codigo')->ignore($id, 'codigo')
             ],
-            'description' => 'required|string|max:50',
+            'descripcion' => 'required|string|max:50',
         ]);
     }
 }

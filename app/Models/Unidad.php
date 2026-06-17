@@ -19,7 +19,7 @@ class Unidad extends Model
     public $incrementing = false;
     protected $keyType = 'string';
 
-    protected $filable = [
+    protected $fillable = [
         'codigo',
         'descripcion',
     ];
