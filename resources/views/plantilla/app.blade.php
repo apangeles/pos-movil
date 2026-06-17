@@ -63,6 +63,7 @@
     <!--begin: custome styles-->
     <link href="{{asset('css/estilos-personalizados.css')}}?v={{ filemtime(public_path('css/estilos-personalizados.css')) }}" rel="stylesheet">
     <!--end: custome styles-->
+    <link rel="stylesheet" href="{{ asset('datatables/dataTables.bootstrap5.css') }}">
     @stack('styles')
 </head>
 <!--end::Head-->
@@ -111,10 +112,20 @@
     <!--end::Required Plugin(popperjs for Bootstrap 5)--><!--begin::Required Plugin(Bootstrap 5)-->
     <script
         src="{{asset('js/bootstrap.min.js')}}"></script>
-    <!--end::Required Plugin(Bootstrap 5)--><!--begin::Required Plugin(AdminLTE)-->
+    <!--end::Required Plugin(Bootstrap 5)-->
+    <!--begin::Required Plugin(AdminLTE)-->
     <script src="{{asset('js/adminlte.js')}}"></script>
+    <!--end::Required Plugin(AdminLTE)-->
+
+    <!--Begin: datatable/sweetalert2/crud-->
+    <script src="{{ asset('datatables/jquery-3.7.1.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.js') }}"></script>
+    <script src="{{ asset('datatables/dataTables.bootstrap5.js') }}"></script>
+    <script src="{{asset('js/sweetalert2.js')}}"></script>
+    <script src="{{asset('js/crud.js')}}"></script>
+    <!--end: datatable/sweetalert2/crud-->
     @stack('scripts')
-    <!--end::Required Plugin(AdminLTE)--><!--begin::OverlayScrollbars Configure-->
+    <!--begin::OverlayScrollbars Configure-->
     <script>
         const SELECTOR_SIDEBAR_WRAPPER = '.sidebar-wrapper';
         const Default = {

@@ -1,6 +1,6 @@
 @extends('plantilla.app')
 @push('estilos')
-<link rel="stylesheet" href="{{ asset('datatables/dataTables.bootstrap5.css') }}">
+
 @endpush
 @section('content')
 <!--begin::Container-->
@@ -45,11 +45,6 @@
 @include('unidades.action')
 @endsection
 @push('scripts')
-<script src="{{ asset('datatables/jquery-3.7.1.js') }}"></script>
-<script src="{{ asset('datatables/dataTables.js') }}"></script>
-<script src="{{ asset('datatables/dataTables.bootstrap5.js') }}"></script>
-<script src="{{asset('js/sweetalert2.js')}}"></script>
-<script src="{{asset('js/crud.js')}}"></script>
 <script>
     class UnidadManager extends CrudManager {
         constructor() {
