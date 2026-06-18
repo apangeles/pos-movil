@@ -1,8 +1,8 @@
 <!-- Modal -->
 <div class="modal fade modal-traslucido" id="modalUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
-            <form id="formUpdate" method="post">
+            <form id="formUpdate" method="post" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" id="method_field" name="_method">
                 <div class="modal-header">
@@ -13,18 +13,61 @@
                     <div class="row">
                         <div class="col-lg-6">
                             <div class="form-group mb-3">
+                                <label for="unidad_codigo" class="form-label">Unidad<span class="text-danger">*</span></label>
+                                <select name="unidad_codigo" id="unidad_codigo" class="form-select" required></select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="afectacion_tipo_codigo" class="form-label">Afectacion tipo<span class="text-danger">*</span></label>
+                                <select name="afectacion_tipo_codigo" id="afectacion_tipo_codigo" class="form-select" required></select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
                                 <label for="codigo" class="form-label">Código<span class="text-danger">*</span></label>
                                 <input type="text" id="codigo" name="codigo" class="form-control" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
+
                         <div class="col-lg-6">
                             <div class="form-group mb-3">
-                                <label for="descripcion" class="form-label">Descripción<span class="text-danger">*</span></label>
-                                <input type="text" id="descripcion" name="descripcion" class="form-control" required>
+                                <label for="nombre" class="form-label">Nombre<span class="text-danger">*</span></label>
+                                <input type="text" id="nombre" name="nombre" class="form-control" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
+
+                        <div class="col-lg-12">
+                            <div class="form-group mb-3">
+                                <label for="descripcion" class="form-label">Descripción</label>
+                                <input type="text" id="descripcion" name="descripcion" class="form-control">
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="precio_unitario" class="form-label">Precio unitario<span class="text-danger">*</span></label>
+                                <input type="text" id="precio_unitario" name="precio_unitario" class="form-control" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="imagen" class="form-label">Imagen</label>
+                                <input type="file" id="imagen" name="imagen" class="form-control">
+                                <div class="invalid-feedback"></div>
+                                <img src="" alt="Imagen del producto" id="imagen_producto">
+                            </div>
+                        </div>
+
                     </div>
                 </div>
                 <div class="modal-footer">

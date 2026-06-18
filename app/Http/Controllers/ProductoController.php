@@ -53,15 +53,34 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $data = $this->validateProducto($request);
+
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('ímagen');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('uploads/productos/'), $filename);
+            $data['imagenn'] = $filename;
+        }
+
+        Producto::create($data);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Registro creado satisfactoriamente.'
+        ]);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Producto $producto)
+    public function show($id)
     {
-        //
+        try {
+            $registro = Producto::firstOrFail($id);
+            return response()->json($registro);
+        } catch (\Exception $e) {
+            return response()->json(['error' => 'Registro no encontrado'], 404);
+        }
     }
 
     /**
@@ -75,16 +94,63 @@ class ProductoController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Producto $producto)
+    public function update(Request $request, $id)
     {
-        //
+        $data = $this->validateProducto($request, $id);
+        $registro = Producto::fisrtOrFail($id);
+
+        if ($request->hasFile('imagen')) {
+            $file = $request->file('imagen');
+            $filename = time() . '_' . $file->getClientOriginalName();
+            $file->move(public_path('upload/productos/'), $filename);
+            $data['imagen'] = $filename;
+
+            $old_image = 'upload/productos/' . $registro->imagen;
+            if (file_exists($old_image)) {
+                @unlink($old_image);
+            }
+        }
+        $registro->update($data);
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Registro actualizado correctamente.'
+        ]);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Producto $producto)
+    public function destroy($id)
     {
-        //
+        try {
+            $registro = Producto::findOrFail($id);
+            $old_image = 'upload/productos/' . $registro->imagen;
+            if (file_exists($old_image)) {
+                @unlink($old_image);
+            }
+
+            $registro->delete();
+
+            return response()->json([
+                'success' => true,
+                'message' => 'Registro eliminado correctamente.'
+            ]);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error al eliminar el registro'], 500);
+        }
+    }
+
+    protected function validateProducto(Request $request, $id = null)
+    {
+        return $request->validate([
+            'unidad_codigo' => 'required|string|max:3',
+            'afectaticion_tipo_codigo' => 'required|string|max:2',
+            'codigo' => 'required|string|max:50',
+            'nombre' => 'required|string|max:50',
+            'descripcion' => 'nullable|string|max:255',
+            'imagen' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
+            'precio_unitario' => 'required|numeric|between:0,9999.99'
+        ]);
     }
 }
