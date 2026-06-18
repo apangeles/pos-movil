@@ -14,7 +14,6 @@ class UnidadController extends Controller
      */
     public function index(Request $request)
     {
-        //
         if ($request->ajax()) {
             $data = Unidad::select(['codigo', 'descripcion']);
 

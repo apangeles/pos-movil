@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers;
+use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UnidadController;
 
 Route::get('/', function () {
@@ -13,3 +14,4 @@ Route::get('/', function () {
 });
 
 Route::resource('unidades', UnidadController::class)->except(['create', 'edit']);
+Route::resource('productos', ProductoController::class)->except(['create', 'edit']);
