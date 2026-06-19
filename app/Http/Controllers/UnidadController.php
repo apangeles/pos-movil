@@ -124,4 +124,10 @@ class UnidadController extends Controller
             'descripcion' => 'required|string|max:50',
         ]);
     }
+
+    public function select(Request $request)
+    {
+        $unidades = Unidad::select('codigo', 'descripcion')->get();
+        return response()->json($unidades);
+    }
 }

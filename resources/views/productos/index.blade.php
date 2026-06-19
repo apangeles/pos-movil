@@ -54,6 +54,14 @@
         constructor() {
             super("{{ url('productos') }}");
             this.initializeDataTable();
+
+            this.populateSelect('unidad_codigo', '{{ route("unidades.select") }}', item =>
+                `<option value="${item.codigo}">${item.codigo} - ${item.descripcion}</option>`
+            );
+
+            this.populateSelect('afectacion_tipo_codigo', '{{ route("afectacion-tipos.select") }}', item =>
+                `<option value="${item.codigo}">${item.codigo} - ${item.descripcion}</option>`
+            );
         }
 
         initializeDataTable() {
