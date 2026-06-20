@@ -6,6 +6,7 @@ use App\Models\Producto;
 use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Str;
 
 class ProductoController extends Controller
 {
@@ -57,7 +58,9 @@ class ProductoController extends Controller
 
         if ($request->hasFile('imagen')) {
             $file = $request->file('ímagen');
-            $filename = time() . '_' . $file->getClientOriginalName();
+            //TODO: Validar si se necesita un cambio de la siguiente linea
+            //$filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/productos/'), $filename);
             $data['imagenn'] = $filename;
         }
@@ -76,7 +79,7 @@ class ProductoController extends Controller
     public function show($id)
     {
         try {
-            $registro = Producto::firstOrFail($id);
+            $registro = Producto::findOrFail($id);
             return response()->json($registro);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Registro no encontrado'], 404);
@@ -97,12 +100,14 @@ class ProductoController extends Controller
     public function update(Request $request, $id)
     {
         $data = $this->validateProducto($request, $id);
-        $registro = Producto::fisrtOrFail($id);
+        $registro = Producto::findOrFail($id);
 
         if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
-            $filename = time() . '_' . $file->getClientOriginalName();
-            $file->move(public_path('upload/productos/'), $filename);
+            //TODO: Validar si se necesita un cambio de la siguiente linea
+            //$filename = time() . '_' . $file->getClientOriginalName();
+            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $file->move(public_path('uploads/productos/'), $filename);
             $data['imagen'] = $filename;
 
             $old_image = 'upload/productos/' . $registro->imagen;
@@ -125,7 +130,7 @@ class ProductoController extends Controller
     {
         try {
             $registro = Producto::findOrFail($id);
-            $old_image = 'upload/productos/' . $registro->imagen;
+            $old_image = 'uploads/productos/' . $registro->imagen;
             if (file_exists($old_image)) {
                 @unlink($old_image);
             }
@@ -145,7 +150,7 @@ class ProductoController extends Controller
     {
         return $request->validate([
             'unidad_codigo' => 'required|string|max:3',
-            'afectaticion_tipo_codigo' => 'required|string|max:2',
+            'afectacion_tipo_codigo' => 'required|string|max:2',
             'codigo' => 'required|string|max:50',
             'nombre' => 'required|string|max:50',
             'descripcion' => 'nullable|string|max:255',

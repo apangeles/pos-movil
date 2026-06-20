@@ -105,12 +105,12 @@
                 ],
                 columnDefs: [{
                         targets: 0,
-                        width: '15%',
+                        width: '12%',
                         className: 'text-center'
                     },
                     {
                         targets: 1,
-                        width: '10%'
+                        width: '8%'
                     },
                     {
                         targets: 2,
@@ -122,7 +122,7 @@
                     },
                     {
                         targets: 4,
-                        width: '20%'
+                        width: '25%'
                     },
                     {
                         targets: 5,
@@ -130,7 +130,7 @@
                     },
                     {
                         targets: 6,
-                        width: '20%'
+                        width: '25%'
                     }
                 ],
                 responsive: true,
@@ -142,6 +142,7 @@
 
         async showEditModal(id) {
             try {
+                console.log(`${this.baseUrl}/${id}`);
                 const response = await this.fetchData(`${this.baseUrl}/${id}`);
 
                 this.isEditing = true;
@@ -151,8 +152,19 @@
                 this.elements.methodField.value = 'PUT';
 
                 //Llenar campos específicos
+                document.getElementById('unidad_codigo').value = response.unidad_codigo;
+                document.getElementById('afectacion_tipo_codigo').value = response.afectacion_tipo_codigo;
                 document.getElementById('codigo').value = response.codigo || '';
+                document.getElementById('nombre').value = response.nombre || '';
                 document.getElementById('descripcion').value = response.descripcion || '';
+                document.getElementById('precio_unitario').value = response.precio_unitario || '';
+
+                if (response.imagen && response.imagen !== "") {
+                    document.getElementById('imagen_producto').src = "{{ asset('uploads/productos') }}/" + response.imagen;
+                    document.getElementById('imagen_producto').style.display = 'block';
+                } else {
+                    document.getElementById('imagen_producto').style.display = 'none';
+                }
 
                 this.form.action = `${this.baseUrl}/${id}`;
 
@@ -166,6 +178,13 @@
 
         focusFirstField() {
             document.getElementById('codigo').focus();
+        }
+
+        showCreateModal() {
+            super.showCreateModal();
+            document.getElementById('unidad_codigo').value = 'NIU';
+            document.getElementById('afectacion_tipo_codigo').value = '10';
+            document.getElementById('imagen_producto').style.display = 'none'
         }
     }
     document.addEventListener('DOMContentLoaded', () => {
