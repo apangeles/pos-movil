@@ -57,12 +57,10 @@ class ProductoController extends Controller
         $data = $this->validateProducto($request);
 
         if ($request->hasFile('imagen')) {
-            $file = $request->file('ímagen');
-            //TODO: Validar si se necesita un cambio de la siguiente linea
-            //$filename = time() . '_' . $file->getClientOriginalName();
+            $file = $request->file('imagen');
             $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/productos/'), $filename);
-            $data['imagenn'] = $filename;
+            $data['imagen'] = $filename;
         }
 
         Producto::create($data);
@@ -105,8 +103,8 @@ class ProductoController extends Controller
         if ($request->hasFile('imagen')) {
             $file = $request->file('imagen');
             //TODO: Validar si se necesita un cambio de la siguiente linea
-            //$filename = time() . '_' . $file->getClientOriginalName();
-            $filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
+            $filename = time() . '_' . $file->getClientOriginalName();
+            //$filename = time() . '_' . Str::random(10) . '.' . $file->getClientOriginalExtension();
             $file->move(public_path('uploads/productos/'), $filename);
             $data['imagen'] = $filename;
 

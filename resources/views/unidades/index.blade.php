@@ -127,5 +127,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         new UnidadManager();
     });
+    document.getElementById('menuAlmacen').classList.add('menu-open');
+    document.getElementById('itemUnidades').classList.add('active');
 </script>
 @endpush

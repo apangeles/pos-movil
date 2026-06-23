@@ -190,5 +190,7 @@
     document.addEventListener('DOMContentLoaded', () => {
         new ProductoManager();
     });
+    document.getElementById('menuAlmacen').classList.add('menu-open');
+    document.getElementById('itemProductos').classList.add('active');
 </script>
 @endpush

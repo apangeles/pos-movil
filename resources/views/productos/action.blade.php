@@ -67,7 +67,6 @@
                                 <img src="" alt="Imagen del producto" id="imagen_producto">
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <div class="modal-footer">
