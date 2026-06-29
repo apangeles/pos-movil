@@ -56,6 +56,7 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateData($request);
+
         $data['password'] = Hash::make($data['password']);
 
         $user = User::create($data);
@@ -76,7 +77,7 @@ class UserController extends Controller
     public function show($id)
     {
         try {
-            $registro = Role::with('permissions')->findOrFail($id);
+            $registro = User::with('roles')->findOrFail($id);
             return response()->json($registro);
         } catch (\Exception $e) {
             return response()->json(['error' => 'Registro no encontrado'], 400);
@@ -97,10 +98,19 @@ class UserController extends Controller
     public function update(Request $request, $id)
     {
         $data = $this->validateData($request, $id);
+        $user = User::findOrFail($id);
 
-        $role = Role::findOrFail($id);
-        $role->update(['name' => $data['name']]);
-        $role->syncPermissions($data['permissions'] ?? []);
+        if(!empty($data['password'])){
+            $data['password'] = Hash::make($data['password']);
+        }else{
+            unset($data['password']);
+        }
+
+        $user->update($data);
+
+        if($request->has('roles')){
+            $user->syncRoles($request->input('roles'));
+        }
 
         return response()->json([
             'success' => true,
@@ -114,8 +124,8 @@ class UserController extends Controller
     public function destroy($id)
     {
         try {
-            $role = Role::findOrFail($id);
-            $role->delete();
+            $user = User::findOrFail($id);
+            $user->delete();
 
             return response()->json([
                 'success' => true,

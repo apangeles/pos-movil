@@ -7,6 +7,7 @@ use App\Http\Controllers\ProductoController;
 use App\Http\Controllers\UnidadController;
 use App\Models\Unidad;
 use App\Http\Controllers\RoleController;
+use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -23,3 +24,4 @@ Route::get('/permisos/select', [RoleController::class, 'permisos'])->name('permi
 Route::resource('unidades', UnidadController::class)->except(['create', 'edit']);
 Route::resource('productos', ProductoController::class)->except(['create', 'edit']);
 Route::resource('roles', RoleController::class)->except(['create', 'edit']);
+Route::resource('usuarios', UserController::class)->except(['create', 'edit']);
