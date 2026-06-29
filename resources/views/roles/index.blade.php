@@ -50,6 +50,46 @@
         constructor() {
             super("{{ url('roles') }}");
             this.initializeDataTable();
+            this.loadPermissions();
+        }
+
+        loadPermissions(marcados = []) {
+            fetch('{{ route("permisos.select") }}')
+                .then(response => response.json())
+                .then(permisos => {
+                    const container = document.getElementById('checkbox-permisos');
+                    container.innerHTML = '';
+
+                    permisos.forEach(p => {
+                        const col = document.createElement('div');
+                        col.className = 'col-md-3 mb-1';
+
+                        const div = document.createElement('div');
+                        div.className = 'form-check';
+
+                        const checkbox = document.createElement('input');
+                        checkbox.type = 'checkbox';
+                        checkbox.className = 'form-check-input';
+                        checkbox.name = 'permissions[]';
+                        checkbox.value = p.name;
+                        checkbox.id = `perm_${p.id}`;
+                        if (marcados.includes(p.name)) checkbox.checked = true;
+
+                        const label = document.createElement('label');
+                        label.className = 'form-check-label';
+                        label.htmlFor = `perm_${p.id}`;
+                        label.textContent = p.name;
+
+                        div.appendChild(checkbox);
+                        div.appendChild(label);
+                        col.appendChild(div);
+                        container.appendChild(col);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error al cargar permisos:', error);
+                    document.getElementById('permissions-error').textContent = 'No se pueden cargar los permisos';
+                })
         }
 
         initializeDataTable() {
@@ -107,8 +147,11 @@
                 this.elements.methodField.value = 'PUT';
 
                 //Llenar campos específicos
-                document.getElementById('codigo').value = response.codigo || '';
-                document.getElementById('descripcion').value = response.descripcion || '';
+                document.getElementById('name').value = response.name || '';
+
+                //Llamar a loadPermissions para cargar marcados
+                const permisosMarcados = (response.permissions || []).map(p => p.name);
+                this.loadPermissions(permisosMarcados);
 
                 this.form.action = `${this.baseUrl}/${id}`;
 
@@ -121,13 +164,13 @@
         }
 
         focusFirstField() {
-            document.getElementById('codigo').focus();
+            document.getElementById('name').focus();
         }
     }
     document.addEventListener('DOMContentLoaded', () => {
         new RoleManager();
     });
-    document.getElementById('menuAlmacen').classList.add('menu-open');
-    document.getElementById('itemUnidades').classList.add('active');
+    document.getElementById('menuSeguridad').classList.add('menu-open');
+    document.getElementById('itemRoles').classList.add('active');
 </script>
 @endpush
