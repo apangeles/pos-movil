@@ -4,11 +4,12 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Role;
-use Spatie\Permission\Models\Permission;
+use App\Models\User;
 use Yajra\DataTables\DataTables;
 use Illuminate\Validation\Rule;
+use Illuminate\Support\Facades\Hash;
 
-class RoleController extends Controller
+class UserController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,24 +17,29 @@ class RoleController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $roles = Role::with('permissions')->select('id', 'name');
+            $data = User::with('roles')->select('id', 'name', 'email', 'activo');
 
-            return DataTables::of($roles)
-                ->addColumn('permissions', function ($role) {
-                    return $role->permissions->map(function ($perm) {
-                        return '<span class="badge bg-secondary me-1">' . $perm->name . '</span>';
+            return DataTables::of($data)
+                ->addColumn('roles', function ($user) {
+                    return $user->roles->pluck('name')->map(function ($role) {
+                        return '<span class="badge bg-primary">' . $role . '</span>';
                     })->implode(' ');
                 })
-                ->addColumn('action', function ($role) {
-                    $editButton = view('components.button-edit', ['id' => $role->id])->render();
-                    $deleteButton = view('components.button-delete', ['id' => $role->id])->render();
+                ->addColumn('action', function ($user) {
+                    $editButton = view('components.button-edit', ['id' => $user->id])->render();
+                    $deleteButton = view('components.button-delete', ['id' => $user->id])->render();
                     return $editButton . $deleteButton;
                 })
-                ->rawColumns(['permissions', 'action'])
+                ->addColumn('activo', function ($user) {
+                    return $user->activo
+                        ? '<span class="badge bg-success">Activo</span>'
+                        : '<span class="badge bg-danger">Inactivo</span>';
+                })
+                ->rawColumns(['roles', 'action', 'activo'])
                 ->make(true);
         }
 
-        return view('roles.index');
+        return view('users.index');
     }
 
     /**
@@ -50,11 +56,12 @@ class RoleController extends Controller
     public function store(Request $request)
     {
         $data = $this->validateData($request);
+        $data['password'] = Hash::make($data['password']);
 
-        $role = Role::create(['name' => $data['name']]);
+        $user = User::create($data);
 
-        if (isset($data['permissions'])) {
-            $role->syncPermissions($data['permissions']);
+        if ($request->has('roles')) {
+            $user->syncRoles($request->input('roles'));
         }
 
         return response()->json([
@@ -122,20 +129,15 @@ class RoleController extends Controller
     protected function validateData(Request $request, $id = null)
     {
         return $request->validate([
-            'name' => [
+            'name' => 'required|string|max:255',
+            'email' => [
                 'required',
-                'string',
-                'max:50',
-                Rule::unique('roles', 'name')->ignore($id)
+                'email',
+                'max:255',
+                Rule::unique('users')->ignore($id)
             ],
-            'permissions' => 'nullable|array',
-            'permissions.*' => 'string|exists:permissions,name',
+            'password' => $id ? 'nullable|min:6' : 'required|min:6',
+            'activo' => 'required|boolean'
         ]);
-    }
-
-    public function permisos()
-    {
-        $permissions = Permission::select('id', 'name')->get();
-        return response()->json($permissions);
     }
 }

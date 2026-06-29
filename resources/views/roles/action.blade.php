@@ -1,6 +1,6 @@
 <!-- Modal -->
 <div class="modal fade modal-traslucido" id="modalUpdate" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-    <div class="modal-dialog">
+    <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <form id="formUpdate" method="post">
                 @csrf
@@ -11,18 +11,20 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group mb-3">
-                                <label for="codigo" class="form-label">Código<span class="text-danger">*</span></label>
-                                <input type="text" id="codigo" name="codigo" class="form-control" required>
+                                <label for="name" class="form-label">Nombre<span class="text-danger">*</span></label>
+                                <input type="text" id="name" name="name" class="form-control" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-12">
                             <div class="form-group mb-3">
-                                <label for="descripcion" class="form-label">Descripción<span class="text-danger">*</span></label>
-                                <input type="text" id="descripcion" name="descripcion" class="form-control" required>
-                                <div class="invalid-feedback"></div>
+                                <label class="form-label">Permisos</span></label>
+                                <div id="checkbox-permisos" class="row">
+
+                                </div>
+                                <div class="invalid-feedback d-block" id="permissions-error"></div>
                             </div>
                         </div>
                     </div>

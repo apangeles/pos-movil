@@ -34,7 +34,7 @@
                         <p>Dashboard</p>
                     </a>
                 </li>
-                <li class="nav-item" id="menuAlmacen">
+                <li class="nav-item" id="menuSeguridad">
                     <a href="#" class="nav-link">
                         <i class="bi bi-archive-fill"></i>
                         <p>
@@ -59,6 +59,29 @@
                             <a href="{{route('productos.index')}}" class="nav-link" id="itemProductos">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Productos</p>
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+                <li class="nav-item" id="menuSeguridad">
+                    <a href="#" class="nav-link">
+                        <i class="bi bi-shield-lock-fill"></i>
+                        <p>
+                            Seguridad
+                            <i class="nav-arrow bi bi-chevron-right"></i>
+                        </p>
+                    </a>
+                    <ul class="nav nav-treeview">
+                        <li class="nav-item">
+                            <a href="{{route('roles.index')}}" class="nav-link" id="itemRoles">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Roles</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#" class="nav-link" id="itemUsuarios">
+                                <i class="nav-icon bi bi-circle"></i>
+                                <p>Usuarios</p>
                             </a>
                         </li>
                     </ul>
