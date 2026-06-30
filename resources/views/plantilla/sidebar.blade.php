@@ -29,7 +29,7 @@
                 data-accordion="false"
                 id="navigation">
                 <li class="nav-item">
-                    <a href="#" class="nav-link">
+                    <a href="{{route('dashboard')}}" class="nav-link" id="itemDahsboard">
                         <i class="nav-icon bi bi-speedometer"></i>
                         <p>Dashboard</p>
                     </a>

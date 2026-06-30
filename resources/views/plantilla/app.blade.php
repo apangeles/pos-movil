@@ -121,8 +121,8 @@
     <script src="{{ asset('datatables/jquery-3.7.1.js') }}"></script>
     <script src="{{ asset('datatables/dataTables.js') }}"></script>
     <script src="{{ asset('datatables/dataTables.bootstrap5.js') }}"></script>
-    <script src="{{asset('js/sweetalert2.js')}}"></script>
-    <script src="{{asset('js/crud.js')}}"></script>
+    <script src="{{ asset('js/sweetalert2.js')}}"></script>
+    <script src="{{ asset('js/crud.js')}}"></script>
     <!--end: datatable/sweetalert2/crud-->
     @stack('scripts')
     <!--begin::OverlayScrollbars Configure-->
