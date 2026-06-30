@@ -52,14 +52,14 @@
         constructor() {
             super("{{ url('usuarios') }}");
             this.initializeDataTable();
-            this.loadPermissions();
+            this.loadRoles();
         }
 
-        loadPermissions(marcados = []) {
-            fetch('{{ route("permisos.select") }}')
+        loadRoles(marcados = []) {
+            fetch('{{ route("roles.select") }}')
                 .then(response => response.json())
                 .then(permisos => {
-                    const container = document.getElementById('checkbox-permisos');
+                    const container = document.getElementById('checkbox-roles');
                     container.innerHTML = '';
 
                     permisos.forEach(p => {
@@ -72,7 +72,7 @@
                         const checkbox = document.createElement('input');
                         checkbox.type = 'checkbox';
                         checkbox.className = 'form-check-input';
-                        checkbox.name = 'permissions[]';
+                        checkbox.name = 'roles[]';
                         checkbox.value = p.name;
                         checkbox.id = `perm_${p.id}`;
                         if (marcados.includes(p.name)) checkbox.checked = true;
@@ -89,8 +89,8 @@
                     });
                 })
                 .catch(error => {
-                    console.error('Error al cargar permisos:', error);
-                    document.getElementById('permissions-error').textContent = 'No se pueden cargar los permisos';
+                    console.error('Error al cargar roles:', error);
+                    document.getElementById('roles-error').textContent = 'No se pueden cargar los roles';
                 })
         }
 
@@ -166,10 +166,12 @@
 
                 //Llenar campos específicos
                 document.getElementById('name').value = response.name || '';
+                document.getElementById('email').value = response.email || '';
+                document.getElementById('activo').value = response.activo?'1':'0';
 
-                //Llamar a loadPermissions para cargar marcados
-                const permisosMarcados = (response.permissions || []).map(p => p.name);
-                this.loadPermissions(permisosMarcados);
+                //Llamar a loadRoles para cargar marcados
+                const rolesMarcados = (response.roles || []).map(p => p.name);
+                this.loadRoles(rolesMarcados);
 
                 this.form.action = `${this.baseUrl}/${id}`;
 
@@ -189,6 +191,6 @@
         new UserManager();
     });
     document.getElementById('menuSeguridad').classList.add('menu-open');
-    document.getElementById('itemRoles').classList.add('active');
+    document.getElementById('itemUsuarios').classList.add('active');
 </script>
 @endpush

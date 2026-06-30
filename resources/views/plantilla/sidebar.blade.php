@@ -79,7 +79,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link" id="itemUsuarios">
+                            <a href="{{route('usuarios.index')}}" class="nav-link" id="itemUsuarios">
                                 <i class="nav-icon bi bi-circle"></i>
                                 <p>Usuarios</p>
                             </a>

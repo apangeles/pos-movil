@@ -133,6 +133,12 @@ class RoleController extends Controller
         ]);
     }
 
+    public function roles()
+    {
+        $roles = Role::select('id', 'name')->get();
+        return response()->json($roles);
+    }
+
     public function permisos()
     {
         $permissions = Permission::select('id', 'name')->get();

@@ -20,6 +20,8 @@ Route::get('/', function () {
 Route::get('/afectacion-tipos/select', [AfectacionTipoController::class, 'select'])->name('afectacion-tipos.select');
 Route::get('/unidades/select', [UnidadController::class, 'select'])->name('unidades.select');
 Route::get('/permisos/select', [RoleController::class, 'permisos'])->name('permisos.select');
+Route::get('/roles/select', [RoleController::class, 'roles'])->name('roles.select');
+Route::get('/usuarios/select', [UserController::class, 'usuarios'])->name('usuarios.select');
 
 Route::resource('unidades', UnidadController::class)->except(['create', 'edit']);
 Route::resource('productos', ProductoController::class)->except(['create', 'edit']);

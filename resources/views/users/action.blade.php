@@ -11,20 +11,46 @@
                 </div>
                 <div class="modal-body">
                     <div class="row">
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="form-group mb-3">
-                                <label for="name" class="form-label">Nombre<span class="text-danger">*</span></label>
+                                <label for="name" class="form-label">Nombre <span class="text-danger">*</span></label>
                                 <input type="text" id="name" name="name" class="form-control" required>
                                 <div class="invalid-feedback"></div>
                             </div>
                         </div>
-                        <div class="col-lg-12">
+                        <div class="col-lg-6">
                             <div class="form-group mb-3">
-                                <label class="form-label">Permisos</span></label>
-                                <div id="checkbox-permisos" class="row">
+                                <label for="email" class="form-label">Email <span class="text-danger">*</span></label>
+                                <input type="text" id="email" name="email" class="form-control" required>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="password" class="form-label">Password <span class="text-warning">
+                                    (Si esta actualizando y no se desea modificar el password puede dejar vacío.)</span>
+                                </label>
+                                <input type="text" id="password" name="password" class="form-control">
+                                <div class="invalid-feedback d-block"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label for="activo" class="form-label">Activo <span class="text-danger">*</span></label>
+                                <select name="activo" id="activo" class="form-select" required>
+                                    <option value="1">Activo</option>
+                                    <option value="0">Inactivo</option>
+                                </select>
+                                <div class="invalid-feedback"></div>
+                            </div>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="form-group mb-3">
+                                <label class="form-label">Roles</span></label>
+                                <div id="checkbox-roles" class="row">
 
                                 </div>
-                                <div class="invalid-feedback d-block" id="permissions-error"></div>
+                                <div class="invalid-feedback d-block" id="roles-error"></div>
                             </div>
                         </div>
                     </div>
