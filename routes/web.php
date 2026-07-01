@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 use App\Http\Controllers;
 use App\Http\Controllers\AfectacionTipoController;
 use App\Http\Controllers\ProductoController;
@@ -9,7 +10,6 @@ use App\Models\Unidad;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\AuthController;
-
 
 Route::middleware(['guest'])->group(function(){
     Route::get('/', function () {
@@ -20,7 +20,6 @@ Route::middleware(['guest'])->group(function(){
     })->name('login');
     Route::post('login', [AuthController::class, 'login'])->name('login.post');
 });
-
 
 Route::middleware(['auth'])->group(function () {
     Route::get('/afectacion-tipos/select', [AfectacionTipoController::class, 'select'])->name('afectacion-tipos.select');
@@ -36,4 +35,9 @@ Route::middleware(['auth'])->group(function () {
     Route::get('dashboard', function(){
         return view('dashboard.index');
     })->name('dashboard');
+
+    Route::post('/logout', function(){
+        Auth::logout();
+        return redirect('/login');
+    })->name('logout');
 });

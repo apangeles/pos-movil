@@ -91,26 +91,32 @@
              <!--end::Color Mode Toggle-->
 
              <!--begin::User Menu Dropdown-->
+             @if(Auth::check())
              <li class="nav-item dropdown user-menu">
                  <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                     <span class="d-none d-md-inline">Usuario</span>
+                     <span class="d-none d-md-inline">{{ Auth::user()->name }}</span>
                  </a>
                  <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
                      <!--begin::User Image-->
                      <li class="user-header text-bg-primary">
                          <p>
-                             Usuario
+                             {{ Auth::user()->name }}
                          </p>
                      </li>
                      <!--end::User Image-->
                      <!--begin::Menu Footer-->
                      <li class="user-footer">
                          <a href="#" class="btn btn-outline-secondary">Perfil</a>
-                         <a href="#" class="btn btn-outline-danger float-end">Cerrar Sesión</a>
+                         <a href="#" onclick="document.getElementById('logout-form').submit()" class="btn btn-outline-danger float-end">Cerrar Sesión</a>
                      </li>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
                      <!--end::Menu Footer-->
                  </ul>
              </li>
+             @endif
+
              <!--end::User Menu Dropdown-->
          </ul>
          <!--end::End Navbar Links-->
